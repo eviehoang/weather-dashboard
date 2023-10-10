@@ -1,4 +1,4 @@
-*{
+* {
     font-family: 'Comfortaa', sans-serif;
 }
 
@@ -8,7 +8,7 @@
     margin: 0;
 }
 
-#umbrella h2{
+#umbrella h2 {
     font-weight: 700;
 }
 
@@ -16,5 +16,7 @@
     float: right;
     margin: 5px;
     margin-top: 10px;
+    background-color: #e3f2fd;
+    border: 1px solid lightgray;
 
 }
