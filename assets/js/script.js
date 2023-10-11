@@ -1,50 +1,55 @@
-function page() {
-    // API Key
-    var apiKey = "9c5e768389d1fb88a2f113178aa99b43";
 
-    // Variables
-    var citySearch = document.getElementById("location");
-    var searchBtn = document.getElementById("searchbutton");
-    var clearnBtn = document.getElementById("clear");
+// API Key
+var apiKey = "9c5e768389d1fb88a2f113178aa99b43";
+var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q="
 
-    var cityName = document.getElementById("city");
-    var weatherIcon = document.getElementById("weather-icon");
-    var nextDays = document.getElementById("upcoming-day");
-    var forecast = document.getElementById("forecast");
-    var temperature = document.getElementById("temperature");
-    var humidity = document.getElementById("humidity");
-    var wind = document.getElementById("wind");
+// Current Date
+var today = dayjs();
 
-    // Get Current Weather
-    function getWeather(byCity) {
-        var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + "byCity" + "&appid=" + apiKey;
+// Variables
+var searchInput = document.getElementById("search-input");
+var searchBtn = document.getElementById("searchbutton");
+var clearBtn = document.getElementById("clear");
 
-        fetch(queryURL)
-            .then(function (response) {
-                console.log(response)
-                
-                var today = dayjs();
-                cityName.innerHTML = response.data.name + "(" + today + ")";
-                var icon = response.data.weahter[0].icon;
-                weatherIcon.setAttribute("src", "https://openweathermap.org/img/wn/" + icon + "@2x.png");
-                temperature.innerHTML = "Temperature: " + k2f(response.data.main.temp) + " &#176F";
-                humidity.innerHTML = "Humidity: " + response.data.main.humidity + "%";
-                wind.innerHTML = "Wind Speed: " + response.data.wind.speed + " MPH";
+var cityName = document.getElementById("city");
+var weatherIcon = document.getElementById("weather-icon");
+var nextDays = document.getElementById("upcoming-day");
+var forecast = document.getElementById("forecast");
+var temperature = document.getElementById("temperature");
+var humidity = document.getElementById("humidity");
+var wind = document.getElementById("wind");
 
+var history = document.getElementById("history");
+var searchHistory = [];
 
-            })
-            .then(function (data) {
-                console.log('data', data)
-            })
-    }
+// Current Weather
+function checkWeather(cityInput) {
+    var queryUrl = apiUrl + cityInput + `&appid=${apiKey}` + "&units=metric";
 
-    // Search Get
-    searchBtn.addEventListener("click", function () {
-        var searched = citySearch.value;
-        getWeather(searched);
-        searchHistory.push(searched);
-        localStorage.setItem("search", JSON.stringify(searched));
-        rendersearched();
-    })
+    fetch(queryUrl)
+        .then(function (response) {
+            console.log(response)
+            return response.json();
+        })
+        .then(function (data) {
+
+            // Weather Data
+            console.log('data', data)
+            cityName.textContent = data.name;
+            temperature.innerHTML = Math.round(data.main.temp) + "°C";
+            humidity.innerHTML = data.main.humidity + "%";
+            wind.innerHTML = data.wind.speed + " kph";
+
+            // Weather Icon
+            var iconcode = data.weather.id
+            var iconUrl = "https://openweathermap.org/img/wn/" + iconcode + ".png";
+            weatherIcon.src = iconUrl;
+        })
 }
-page();
+
+
+searchBtn.addEventListener("click", (event) =>{
+    event.preventDefault();
+    var event = searchInput.value;
+    checkWeather(event);
+})
