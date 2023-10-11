@@ -62,7 +62,7 @@ function getForecast(cityInput) {
         .then(function (data) {
             console.log('data', data)
 
-            for (var i = 0; i <= 5; i++) {
+            for (var i = 0; i < 5; i++) {
                 var icon = data.list[i].weather[0].icon;
                 var card = `<div class="card mb-3 m-1" style="max-width: 18rem; background-color: #e3f2fd;">
                         <div class="card-body">
@@ -72,9 +72,10 @@ function getForecast(cityInput) {
                         <p> Wind: ` + data.list[i].wind.speed + `kph </p>
                         </div>
                     </div>`;
+                forecast.innerHTML += card;
 
             }
-            forecast.innerHTML = card;
+
 
         })
 }
