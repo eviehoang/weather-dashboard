@@ -54,6 +54,7 @@ function checkWeather(cityInput) {
 function getForecast(cityInput) {
     var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityInput + `&appid=${apiKey}` + "&units=metric";
     fetch(forecastUrl)
+
         .then(function (response) {
             console.log(response)
             return response.json();
@@ -73,7 +74,6 @@ function getForecast(cityInput) {
                         </div>
                     </div>`;
                 forecast.innerHTML += card;
-
             }
 
 
