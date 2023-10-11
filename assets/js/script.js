@@ -22,6 +22,7 @@ var icon = document.getElementById("icon");
 var history = document.getElementById("history");
 var searchHistory = [];
 
+
 // Current Weather
 function checkWeather(cityInput) {
     var queryUrl = apiUrl + cityInput + `&appid=${apiKey}` + "&units=metric";
@@ -35,7 +36,7 @@ function checkWeather(cityInput) {
 
             // Weather Data
             console.log('data', data)
-            cityName.textContent = data.name;
+            cityName.textContent = data.name + " ";
             temperature.innerHTML = Math.round(data.main.temp) + "°C";
             humidity.innerHTML = data.main.humidity + "%";
             wind.innerHTML = data.wind.speed + " kph";
@@ -61,19 +62,20 @@ function getForecast(cityInput) {
         .then(function (data) {
             console.log('data', data)
 
-            for (i = 0; i < 5; i++) {
+            for (var i = 0; i <= 5; i++) {
                 var icon = data.list[i].weather[0].icon;
                 var card = `<div class="card mb-3 m-1" style="max-width: 18rem; background-color: #e3f2fd;">
                         <div class="card-body">
-                        <img src ="https://openweathermap.org/img/w/`+ icon +`.png"></img>
+                        <img src ="https://openweathermap.org/img/w/`+ icon + `.png"></img>
                         <p> Temp: ` + data.list[i].main.temp + ` °C </p>
                         <p> Humidity:` + data.list[i].main.humidity + `</p>
-                        <p> Wind: ` + data.list[i].wind.speed + ` </p>
+                        <p> Wind: ` + data.list[i].wind.speed + `kph </p>
                         </div>
                     </div>`;
 
-                forecast.innerHTML = card;
             }
+            forecast.innerHTML = card;
+
         })
 }
 
