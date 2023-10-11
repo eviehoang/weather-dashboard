@@ -29,7 +29,7 @@ Not Available
 
 ## Deployed Link
 
-* [See Live Site](https://eviehoang.github.io/work-day-scheduler/)
+* [See Live Site](https://eviehoang.github.io/weather-dashboard/)
 
 
 ## Authors
