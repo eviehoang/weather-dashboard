@@ -31,20 +31,23 @@
                 <div class="col-9">
                     <!-- current weather here -->
                     <div class="card mb-4">
-                        <h5 class="card-header">Current Weather</h5>
+                        <h5 class="card-header" id="city">City Name</h5>
                         <div class="card-body">
-                            <p class="card-text" id="currentweather">Weather Content Here</p>
+                            <p class="card-text" id="weather-icon">Weather Content Here</p>
+                            <p class="card-text" id="temperature">Temperature</p>
+                            <p class="card-text" id="humidity">humidity</p>
+                            <p class="card-text" id="wind">windspeed</p>
                         </div>
                     </div>
 
                     <!-- Weather Cards for next 5 days -->
+                    <h5 class="card-header p-2">Forecast</h5>
                     <article class="d-inline-flex">
-
                         <div class="card mb-3 m-1" style="max-width: 18rem; background-color: #e3f2fd;">
-                            <div class="card-header">Date</div>
+                            <div class="card-header" id="upcoming-day">Date</div>
                             <div class="card-body">
                                 <h5 class="card-title">Forecast</h5>
-                                <p class="card-text" id="Forecast"></p>
+                                <p class="card-text" id="forecast"></p>
                             </div>
                         </div>
 
@@ -86,7 +89,8 @@
                     <!-- Search Box -->
                     <h5>Location Search</h5>
                     <form class="form pb-5">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Enter Location" aria-label="Search">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Enter Location"
+                            aria-label="Search" id="location">
                         <button class="btn btn-sm" type="submit" id="searchbutton">Search</button>
                         <button class="btn btn-sm" type="submit" id="clear">Clear Searches</button>
                     </form>
@@ -102,7 +106,7 @@
                         <li class="list-group-item list-group-item-info">This is a info list group item</li>
                         <li class="list-group-item list-group-item-light">This is a light list group item</li>
                         <li class="list-group-item list-group-item-dark">This is a dark list group item</li>
-                      </ul>
+                    </ul>
                 </div>
             </div>
 
